@@ -21,12 +21,21 @@ public class Crop : MonoBehaviour, iPutIneable {
 
     void GrownUp(params object[] parameters)
     {
-        currentDay++;
+        if (currentDay < maxDays)
+        {
+            currentDay++;
+        }
+        else
+        {
+            canHarvest = true;
+            UnsuscribeEvent();
+
+        }
     }
 
     void Harvest()
     {
-        UnsuscribeEvent();
+        Destroy(this.gameObject);
     }
 
     void Die()
@@ -39,6 +48,21 @@ public class Crop : MonoBehaviour, iPutIneable {
         get
         {
             return currentDay;
+        }
+    }
+    public int MaxDays
+    {
+        get
+        {
+            return maxDays;
+        }
+    }
+
+    public bool CanHarvest
+    {
+        get
+        {
+            return canHarvest;
         }
     }
 

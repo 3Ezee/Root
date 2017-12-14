@@ -15,6 +15,14 @@ public class SpriteManager : MonoBehaviour {
 
     void CheckSprite(params object[] parameters)
     {
-        _anim.SetInteger("CurrentDay", _crop.CurrentDay);
+
+        if(_crop != null)
+        {
+            _anim.SetInteger("CurrentDay", _crop.CurrentDay);
+        }
+
+        if (_crop == null ||_crop.CanHarvest)
+            EventsManager.UnsubscribeToEvent(EventType.GP_EndDay, CheckSprite);
+        
     }
 }

@@ -5,13 +5,31 @@ using UnityEngine;
 public class HarvestClick : MonoBehaviour {
     public GameObject prefab;
     public Camera cam;
-	// Update is called once per frame
+
 	void Update () {
-        if (Input.GetMouseButtonDown(0))
-        {
+
+       PositionMouse();
+
+       if (Input.GetMouseButtonDown(0))
+       {
             Vector3 positionThing = cam.ScreenToWorldPoint(Input.mousePosition);
-            Instantiate(prefab, new Vector2(positionThing.x, positionThing.y),Quaternion.identity);
-            
-        }
+            Instantiate(prefab, new Vector2(positionThing.x, positionThing.y), Quaternion.identity);
+       }
 	}
+
+    void PositionMouse()
+    {
+        Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        this.transform.position = new Vector3(mousePos.x, mousePos.y, 10);
+    }
+
+    void Oncolli
+    {
+        Debug.Log(other.gameObject.tag);
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        Debug.Log(other.gameObject.tag);
+    }
 }
